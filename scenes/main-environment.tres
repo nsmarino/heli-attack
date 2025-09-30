@@ -1,0 +1,24 @@
+[gd_resource type="Environment" load_steps=3 format=3 uid="uid://ddo455a1peyhr"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_3vlvf"]
+sky_top_color = Color(0.40239587, 0.036170464, 0.19449621, 1)
+sky_horizon_color = Color(0.12490792, 0.11836549, 0.33419457, 1)
+ground_bottom_color = Color(0.012253176, 0.015887124, 0.09895665, 1)
+ground_horizon_color = Color(0.17398578, 0.097110175, 0.4002841, 1)
+
+[sub_resource type="Sky" id="Sky_u3n42"]
+sky_material = SubResource("ProceduralSkyMaterial_3vlvf")
+
+[resource]
+background_mode = 2
+sky = SubResource("Sky_u3n42")
+glow_enabled = true
+glow_intensity = 0.2
+glow_bloom = 0.33
+glow_blend_mode = 0
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.021129364, 0.046435796, 0.26484168, 1)
+fog_density = 1.0
+fog_sky_affect = 0.295
+fog_depth_end = 80.0

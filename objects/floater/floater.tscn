@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=3 uid="uid://hyuv4ckqcb16"]
+
+[ext_resource type="Script" uid="uid://bdfpsbs21uc7t" path="res://objects/floater/floater.gd" id="1_fx7id"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_5cdgp"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bd87a"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(1, 1, 0.19215687, 1)
+emission_energy_multiplier = 3.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_fx7id"]
+material = SubResource("StandardMaterial3D_bd87a")
+radius = 0.2
+height = 0.4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fx7id"]
+lifetime_randomness = 0.08
+emission_shape = 1
+emission_sphere_radius = 0.3
+spread = 37.53
+gravity = Vector3(0, 0.4, 0)
+radial_accel_min = -2.2351742e-06
+radial_accel_max = 0.19999775
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2ca51"]
+albedo_color = Color(0.9644448, 0.7619487, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_bgksf"]
+material = SubResource("StandardMaterial3D_2ca51")
+size = Vector2(0.2, 0.2)
+orientation = 2
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nggw3"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_82sj7"]
+
+[node name="floater" type="Area3D"]
+script = ExtResource("1_fx7id")
+
+[node name="pickme" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5670722, 0)
+shape = SubResource("BoxShape3D_5cdgp")
+
+[node name="Mesh" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5670722, 0)
+mesh = SubResource("SphereMesh_fx7id")
+
+[node name="IdleFX" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5670722, 0)
+amount = 16
+lifetime = 3.25
+process_material = SubResource("ParticleProcessMaterial_fx7id")
+draw_pass_1 = SubResource("PlaneMesh_bgksf")
+
+[node name="BurstFX" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5670722, 0)
+emitting = false
+one_shot = true
+process_material = SubResource("ParticleProcessMaterial_nggw3")
+draw_pass_1 = SubResource("PlaneMesh_82sj7")

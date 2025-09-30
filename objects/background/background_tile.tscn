@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://40be4ennm21y"]
+
+[ext_resource type="Script" uid="uid://dx5x36bxeiv4w" path="res://objects/background/background_tile.gd" id="1_c52l4"]
+[ext_resource type="PackedScene" uid="uid://brxb3kdra7gab" path="res://models/stem-mesh.glb" id="2_ebn0v"]
+
+[node name="BackgroundTile" type="Node3D"]
+script = ExtResource("1_c52l4")
+
+[node name="stem-mesh" parent="." instance=ExtResource("2_ebn0v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, -1, -2)
+
+[node name="stem-mesh2" parent="." instance=ExtResource("2_ebn0v")]
+transform = Transform3D(0.6264428, 0, 0.49756357, 0, 0.8, 0, -0.49756357, 0, 0.6264428, 2.9371893, -1, 1.0244737)
+
+[node name="stem-mesh3" parent="." instance=ExtResource("2_ebn0v")]
+transform = Transform3D(0.3276935, 0, -0.37764663, 0, 0.5, 0, 0.37764663, 0, 0.3276935, 2.176623, -2.5632782, -4.6213145)

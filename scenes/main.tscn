@@ -1,0 +1,97 @@
+[gd_scene load_steps=13 format=3 uid="uid://dm0ymt1k01748"]
+
+[ext_resource type="Script" uid="uid://b1esvavhc0ixb" path="res://scripts/main.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://b5m7tudix2rb5" path="res://scripts/camera_3d.gd" id="2_h2yge"]
+[ext_resource type="Environment" uid="uid://ddo455a1peyhr" path="res://scenes/main-environment.tres" id="2_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://cbil5ndxx8jop" path="res://objects/Avatar.tscn" id="3_tefeu"]
+[ext_resource type="Script" uid="uid://b02t4cm6vl3ae" path="res://scenes/button.gd" id="6_85g3d"]
+[ext_resource type="PackedScene" uid="uid://dsin5ghpmprho" path="res://objects/ground.tscn" id="6_tefeu"]
+[ext_resource type="Script" uid="uid://dc8bxg5qiystw" path="res://scripts/hud.gd" id="6_tipki"]
+[ext_resource type="PackedScene" uid="uid://b7juue07yiks3" path="res://objects/floater/floater_spawner.tscn" id="8_tipki"]
+[ext_resource type="PackedScene" uid="uid://bsw54l7ftce6t" path="res://objects/background/background_spawner.tscn" id="9_85g3d"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tbgi4"]
+size = Vector2(400, 20)
+
+[sub_resource type="Gradient" id="Gradient_tefeu"]
+colors = PackedColorArray(0.45840502, 0.45840508, 0.45840502, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_o6xl0"]
+gradient = SubResource("Gradient_tefeu")
+width = 400
+height = 20
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_0xm2m")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("2_tbgi4")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.70710677, -0.5, 0.5, 0, 0.70710677, 0.70710677, -0.7071068, -0.49999997, 0.49999997, 0, 4, 4)
+shadow_enabled = true
+
+[node name="Avatar" parent="." instance=ExtResource("3_tefeu")]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9306841, 1.6591134, 16.790806)
+current = true
+fov = 20.0
+script = ExtResource("2_h2yge")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("6_tipki")
+
+[node name="HealthBar" type="TextureProgressBar" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -200.0
+offset_top = 100.0
+offset_right = 200.0
+offset_bottom = 140.0
+grow_horizontal = 2
+max_value = 1000.0
+value = 500.0
+texture_under = SubResource("PlaceholderTexture2D_tbgi4")
+texture_progress = SubResource("GradientTexture2D_o6xl0")
+tint_under = Color(0.36819968, 0.18517765, 0.8757245, 1)
+tint_progress = Color(0.97875947, 0.4005374, 0.5105302, 1)
+
+[node name="UpdateTimer" type="Timer" parent="HUD"]
+
+[node name="Button" type="Button" parent="HUD"]
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 212.0
+offset_bottom = 71.0
+text = "phase change button"
+script = ExtResource("6_85g3d")
+
+[node name="Level" type="Node" parent="."]
+
+[node name="Ground" parent="Level" instance=ExtResource("6_tefeu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.065345764, 0, 0)
+
+[node name="Spawners" type="Node" parent="."]
+
+[node name="FloaterSpawner" parent="Spawners" instance=ExtResource("8_tipki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+
+[node name="Background" type="Node" parent="Spawners"]
+
+[node name="BackgroundSpawner" parent="Spawners/Background" instance=ExtResource("9_85g3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6206665, 0, -35)
+spawn_interval = 12.0
+
+[node name="BackgroundSpawner2" parent="Spawners/Background" instance=ExtResource("9_85g3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.947292, 0, -24)
+spawn_interval = 12.0
+
+[node name="BackgroundSpawner3" parent="Spawners/Background" instance=ExtResource("9_85g3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0578575, 0, -6)
+spawn_interval = 12.0
+
+[node name="BackgroundSpawner4" parent="Spawners/Background" instance=ExtResource("9_85g3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 9)
+spawn_interval = 12.0
