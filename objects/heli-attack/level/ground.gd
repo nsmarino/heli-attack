@@ -10,9 +10,10 @@ func _process(_delta: float) -> void:
 	pass
 
 func _on_phase_changed(phase) -> void:
-	match phase:
-		Events.Phase.WALK_CYCLE:
-			_begin_walk_cycle()
+	pass
+	#match phase:
+		#Events.Phase.WALK_CYCLE:
+			#_begin_walk_cycle()
 
 func _begin_walk_cycle() -> void:
 	pass

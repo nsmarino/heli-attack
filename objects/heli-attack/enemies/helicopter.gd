@@ -1,4 +1,3 @@
-# HelicopterPatrolWithCurve_Strict.gd
 extends CharacterBody3D
 
 # --- Horizontal patrol ---

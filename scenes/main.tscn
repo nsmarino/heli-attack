@@ -1,25 +1,13 @@
-[gd_scene load_steps=13 format=3 uid="uid://dm0ymt1k01748"]
+[gd_scene load_steps=9 format=3 uid="uid://dm0ymt1k01748"]
 
-[ext_resource type="Script" uid="uid://b1esvavhc0ixb" path="res://scripts/main.gd" id="1_0xm2m"]
-[ext_resource type="Script" uid="uid://b5m7tudix2rb5" path="res://scripts/camera_3d.gd" id="2_h2yge"]
+[ext_resource type="Script" uid="uid://b1esvavhc0ixb" path="res://scenes/main.gd" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://b5m7tudix2rb5" path="res://objects/camera_3d.gd" id="2_h2yge"]
 [ext_resource type="Environment" uid="uid://ddo455a1peyhr" path="res://scenes/main-environment.tres" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://cbil5ndxx8jop" path="res://objects/Avatar.tscn" id="3_tefeu"]
-[ext_resource type="Script" uid="uid://b02t4cm6vl3ae" path="res://objects/button.gd" id="6_85g3d"]
-[ext_resource type="PackedScene" uid="uid://dsin5ghpmprho" path="res://objects/ground.tscn" id="6_tefeu"]
-[ext_resource type="Script" uid="uid://dc8bxg5qiystw" path="res://scripts/hud.gd" id="6_tipki"]
+[ext_resource type="PackedScene" uid="uid://ipsqp3uaj0i5" path="res://scenes/hud.tscn" id="5_tipki"]
+[ext_resource type="PackedScene" uid="uid://dsin5ghpmprho" path="res://objects/heli-attack/level/ground.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://brxb3kdra7gab" path="res://models/stem-mesh.glb" id="8_tipki"]
-[ext_resource type="PackedScene" uid="uid://i60bfrkoropr" path="res://objects/heli-attack/Helicopter.tscn" id="9_85g3d"]
-
-[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tbgi4"]
-size = Vector2(400, 20)
-
-[sub_resource type="Gradient" id="Gradient_tefeu"]
-colors = PackedColorArray(0.45840502, 0.45840508, 0.45840502, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_o6xl0"]
-gradient = SubResource("Gradient_tefeu")
-width = 400
-height = 20
+[ext_resource type="PackedScene" uid="uid://i60bfrkoropr" path="res://objects/heli-attack/enemies/Helicopter.tscn" id="9_85g3d"]
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_0xm2m")
@@ -32,43 +20,15 @@ transform = Transform3D(0.70710677, -0.5, 0.5, 0, 0.70710677, 0.70710677, -0.707
 shadow_enabled = true
 
 [node name="Avatar" parent="." instance=ExtResource("3_tefeu")]
-camera_path = NodePath("../Camera3D")
+camera_path = NodePath("Camera3D")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="Avatar"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 60)
 current = true
 fov = 10.0
 script = ExtResource("2_h2yge")
 
-[node name="HUD" type="CanvasLayer" parent="."]
-script = ExtResource("6_tipki")
-
-[node name="HealthBar" type="TextureProgressBar" parent="HUD"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 40.0
-offset_top = -60.0
-offset_right = 440.0
-offset_bottom = -40.0
-grow_vertical = 0
-max_value = 500.0
-value = 250.0
-texture_under = SubResource("PlaceholderTexture2D_tbgi4")
-texture_progress = SubResource("GradientTexture2D_o6xl0")
-tint_under = Color(0.36819968, 0.18517765, 0.8757245, 1)
-tint_progress = Color(0.97875947, 0.4005374, 0.5105302, 1)
-
-[node name="UpdateTimer" type="Timer" parent="HUD"]
-
-[node name="Button" type="Button" parent="HUD"]
-visible = false
-offset_left = 40.0
-offset_top = 40.0
-offset_right = 212.0
-offset_bottom = 71.0
-text = "phase change button"
-script = ExtResource("6_85g3d")
+[node name="HUD" parent="." instance=ExtResource("5_tipki")]
 
 [node name="Level" type="Node" parent="."]
 
