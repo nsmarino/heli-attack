@@ -4,11 +4,11 @@
 [ext_resource type="Script" uid="uid://b5m7tudix2rb5" path="res://scripts/camera_3d.gd" id="2_h2yge"]
 [ext_resource type="Environment" uid="uid://ddo455a1peyhr" path="res://scenes/main-environment.tres" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://cbil5ndxx8jop" path="res://objects/Avatar.tscn" id="3_tefeu"]
-[ext_resource type="Script" uid="uid://b02t4cm6vl3ae" path="res://scenes/button.gd" id="6_85g3d"]
+[ext_resource type="Script" uid="uid://b02t4cm6vl3ae" path="res://objects/button.gd" id="6_85g3d"]
 [ext_resource type="PackedScene" uid="uid://dsin5ghpmprho" path="res://objects/ground.tscn" id="6_tefeu"]
 [ext_resource type="Script" uid="uid://dc8bxg5qiystw" path="res://scripts/hud.gd" id="6_tipki"]
-[ext_resource type="PackedScene" uid="uid://b7juue07yiks3" path="res://objects/floater/floater_spawner.tscn" id="8_tipki"]
-[ext_resource type="PackedScene" uid="uid://bsw54l7ftce6t" path="res://objects/background/background_spawner.tscn" id="9_85g3d"]
+[ext_resource type="PackedScene" uid="uid://brxb3kdra7gab" path="res://models/stem-mesh.glb" id="8_tipki"]
+[ext_resource type="PackedScene" uid="uid://i60bfrkoropr" path="res://objects/heli-attack/Helicopter.tscn" id="9_85g3d"]
 
 [sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_tbgi4"]
 size = Vector2(400, 20)
@@ -32,27 +32,28 @@ transform = Transform3D(0.70710677, -0.5, 0.5, 0, 0.70710677, 0.70710677, -0.707
 shadow_enabled = true
 
 [node name="Avatar" parent="." instance=ExtResource("3_tefeu")]
+camera_path = NodePath("../Camera3D")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9306841, 1.6591134, 16.790806)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 60)
 current = true
-fov = 20.0
+fov = 10.0
 script = ExtResource("2_h2yge")
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("6_tipki")
 
 [node name="HealthBar" type="TextureProgressBar" parent="HUD"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -200.0
-offset_top = 100.0
-offset_right = 200.0
-offset_bottom = 140.0
-grow_horizontal = 2
-max_value = 1000.0
-value = 500.0
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 40.0
+offset_top = -60.0
+offset_right = 440.0
+offset_bottom = -40.0
+grow_vertical = 0
+max_value = 500.0
+value = 250.0
 texture_under = SubResource("PlaceholderTexture2D_tbgi4")
 texture_progress = SubResource("GradientTexture2D_o6xl0")
 tint_under = Color(0.36819968, 0.18517765, 0.8757245, 1)
@@ -61,6 +62,7 @@ tint_progress = Color(0.97875947, 0.4005374, 0.5105302, 1)
 [node name="UpdateTimer" type="Timer" parent="HUD"]
 
 [node name="Button" type="Button" parent="HUD"]
+visible = false
 offset_left = 40.0
 offset_top = 40.0
 offset_right = 212.0
@@ -73,25 +75,29 @@ script = ExtResource("6_85g3d")
 [node name="Ground" parent="Level" instance=ExtResource("6_tefeu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.065345764, 0, 0)
 
+[node name="Decoration" type="Node" parent="Level"]
+
+[node name="stem-mesh" parent="Level/Decoration" instance=ExtResource("8_tipki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6050916, 0, -2.9642377)
+
+[node name="stem-mesh2" parent="Level/Decoration" instance=ExtResource("8_tipki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.394909, 0, -2.9642377)
+
+[node name="stem-mesh3" parent="Level/Decoration" instance=ExtResource("8_tipki")]
+transform = Transform3D(0.49999997, 0, -0.86602545, 0, 1, 0, 0.86602545, 0, 0.49999997, 5.394909, 0, -2.9642377)
+
+[node name="stem-mesh4" parent="Level/Decoration" instance=ExtResource("8_tipki")]
+transform = Transform3D(0.70710677, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, 0.70710677, -9.605091, 0, -2.9642377)
+
+[node name="stem-mesh5" parent="Level/Decoration" instance=ExtResource("8_tipki")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, -15.605091, 0, -2.9642377)
+
+[node name="stem-mesh6" parent="Level/Decoration" instance=ExtResource("8_tipki")]
+transform = Transform3D(0.70710677, 0, 0.7071068, 0, 1, 0, -0.7071068, 0, 0.70710677, 18.394909, 0, -2.9642377)
+
 [node name="Spawners" type="Node" parent="."]
 
-[node name="FloaterSpawner" parent="Spawners" instance=ExtResource("8_tipki")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 0, 0)
+[node name="Enemies" type="Node" parent="."]
 
-[node name="Background" type="Node" parent="Spawners"]
-
-[node name="BackgroundSpawner" parent="Spawners/Background" instance=ExtResource("9_85g3d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.6206665, 0, -35)
-spawn_interval = 12.0
-
-[node name="BackgroundSpawner2" parent="Spawners/Background" instance=ExtResource("9_85g3d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.947292, 0, -24)
-spawn_interval = 12.0
-
-[node name="BackgroundSpawner3" parent="Spawners/Background" instance=ExtResource("9_85g3d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.0578575, 0, -6)
-spawn_interval = 12.0
-
-[node name="BackgroundSpawner4" parent="Spawners/Background" instance=ExtResource("9_85g3d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 9)
-spawn_interval = 12.0
+[node name="Helicopter" parent="Enemies" instance=ExtResource("9_85g3d")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 7, -0.83925915)
