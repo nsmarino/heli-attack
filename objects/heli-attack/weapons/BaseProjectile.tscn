@@ -1,6 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dm8cgodifeef"]
+[gd_scene load_steps=5 format=3 uid="uid://cd1nntdyml11c"]
 
-[ext_resource type="Script" uid="uid://cni80upiqh6wv" path="res://objects/heli-attack/weapons/BaseProjectile.gd" id="1_ycgip"]
+[ext_resource type="Script" uid="uid://cni80upiqh6wv" path="res://objects/heli-attack/weapons/BaseProjectile.gd" id="1_rmddq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ycgip"]
 albedo_color = Color(0, 0, 0, 1)
@@ -12,10 +12,10 @@ material = SubResource("StandardMaterial3D_ycgip")
 radius = 0.1
 height = 0.2
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_ycgip"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_rmddq"]
 
-[node name="PistolProjectile" type="Node3D"]
-script = ExtResource("1_ycgip")
+[node name="BaseProjectile" type="Node3D"]
+script = ExtResource("1_rmddq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_ycgip")
@@ -23,4 +23,4 @@ mesh = SubResource("SphereMesh_ycgip")
 [node name="Area3D" type="Area3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-shape = SubResource("SphereShape3D_ycgip")
+shape = SubResource("SphereShape3D_rmddq")

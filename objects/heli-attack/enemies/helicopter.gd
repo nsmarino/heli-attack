@@ -1,5 +1,9 @@
 extends CharacterBody3D
 
+# --- Health ---
+@export var health: float = 100.0
+@onready var healthBar = $SubViewport/HealthBar
+
 # --- Horizontal patrol ---
 @export var base_speed: float = 6.0
 @export var patrol_distance: float = 16.0
@@ -28,6 +32,10 @@ var _dir_sign: float = 1.0
 var _t: float = 0.0
 
 func _ready() -> void:
+	healthBar.max_value = health
+	healthBar.value = health
+	
+	# --- Patrol ---
 	_axis_norm = patrol_axis.normalized()
 	if _axis_norm == Vector3.ZERO:
 		_axis_norm = Vector3.RIGHT
@@ -88,3 +96,18 @@ func _physics_process(delta: float) -> void:
 			var yaw: float = atan2(v2.x, v2.y)
 			rotation.y = yaw
 			# rotation.y = lerp_angle(rotation.y, yaw, 0.15)
+
+func on_damage(damage: float) -> void:
+	print("receive damage ", damage)
+	
+	# Subtract damage from health
+	health -= damage
+	
+	# Update health bar
+	healthBar.value = health
+	
+	# Check if health is at or below zero
+	if health <= 0.0:
+		print("Helicopter destroyed!")
+		# Queue the helicopter for deletion
+		queue_free()

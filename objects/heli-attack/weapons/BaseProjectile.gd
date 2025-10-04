@@ -3,13 +3,18 @@ extends Node3D
 class_name BaseProjectile
 
 @export var speed: float = 60.0
+@export var damage: float = 10.0
 @export var life_time: float = 2.0
+
+@onready var collider = $Area3D
 
 var _dir: Vector3 = Vector3(1, 0, 0)
 
 func _ready() -> void:
 	# Simple TTL; swap for a Timer node if you prefer
 	get_tree().create_timer(life_time).timeout.connect(queue_free)
+	collider.connect("area_entered", on_enter_area)
+	collider.connect("body_entered", on_enter_body)
 
 func _physics_process(delta: float) -> void:
 	travel(delta)
@@ -20,3 +25,10 @@ func launch(from: Transform3D, initial_dir: Vector3) -> void:
 	
 func travel(delta: float) -> void:
 	global_position += _dir * speed * delta
+	
+func on_enter_area(area_entered) -> void:
+	print("Area entered: ", area_entered)
+
+func on_enter_body(body_entered) -> void:
+	if (body_entered.has_method("on_damage") and body_entered.is_in_group("enemy")):
+		body_entered.on_damage(damage)

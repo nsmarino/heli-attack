@@ -28,6 +28,7 @@ func _spawn_projectiles() -> void:
 		world.add_child(proj)
 		var dir: Vector3 = _apply_xy_spread(forward_xy, data.spread_deg)
 		proj.speed = data.muzzle_velocity
+		proj.damage = data.damage
 		proj.launch(muzzle.global_transform, dir)
 
 func _apply_xy_spread(dir: Vector3, spread_deg: float) -> Vector3:

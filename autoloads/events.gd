@@ -1,11 +1,12 @@
 extends Node
 
 enum Phase {
-	WORKSHOP,
-	WALK_CYCLE
+	START,
+	PLAY,
+	END,
 }
 
-signal floater_clicked
-signal end_reached
+signal helicopter_destroyed
+signal player_killed
 
 signal phase_changed(phase: Phase)
