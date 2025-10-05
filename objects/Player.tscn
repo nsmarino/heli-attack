@@ -6,27 +6,31 @@
 [ext_resource type="AudioStream" uid="uid://c52um5ycfub4w" path="res://sounds/robot_land.wav" id="4_seukq"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8t0g"]
+radius = 0.33
+height = 1.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_tidn2"]
 albedo_color = Color(0.735357, 0.735357, 0.735357, 1)
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_tidn2"]
 material = SubResource("StandardMaterial3D_tidn2")
+radius = 0.33
+height = 1.5
 
 [node name="Player" type="CharacterBody3D" groups=["player"]]
 script = ExtResource("1_gndvh")
 weapon_scenes = Array[PackedScene]([ExtResource("2_6vqvp")])
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 shape = SubResource("CapsuleShape3D_u8t0g")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
 mesh = SubResource("CapsuleMesh_tidn2")
 
 [node name="WeaponPivot" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="WeaponSocket" type="Node3D" parent="WeaponPivot"]
 

@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://i60bfrkoropr"]
+[gd_scene load_steps=8 format=3 uid="uid://i60bfrkoropr"]
 
 [ext_resource type="Script" uid="uid://cpblwj61mkhgg" path="res://objects/heli-attack/enemies/helicopter.gd" id="1_ch7df"]
 [ext_resource type="Texture2D" uid="uid://c7hodtymkcx6u" path="res://sprites/ui/HealthUnder.png" id="2_x1xgr"]
 [ext_resource type="Texture2D" uid="uid://1hxlak5iye8l" path="res://sprites/ui/Health.png" id="3_t75nw"]
+[ext_resource type="PackedScene" uid="uid://4vhwcuprjc4c" path="res://models/character/test-helicopter.glb" id="4_ytp1d"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_t8lvv"]
 size = Vector3(1.5, 4, 1)
@@ -18,6 +19,7 @@ script = ExtResource("1_ch7df")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1.9106855e-15, 4.371139e-08, 1, 1, -4.371139e-08, 0, 4.371139e-08, 1, -4.371139e-08, 0, 0.75, 0)
+visible = false
 mesh = SubResource("BoxMesh_t8lvv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -41,3 +43,6 @@ texture_progress = ExtResource("3_t75nw")
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -0.39999998, 0)
 billboard = 1
 texture = SubResource("ViewportTexture_x1xgr")
+
+[node name="test-helicopter" parent="." instance=ExtResource("4_ytp1d")]
+transform = Transform3D(0.5, 0, 0, 0, 0.4959815, -0.06326396, 0, 0.06326396, 0.4959815, 0, 0, -0.23164296)
