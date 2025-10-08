@@ -5,6 +5,7 @@ class_name BaseProjectile
 @export var speed: float = 60.0
 @export var damage: float = 10.0
 @export var life_time: float = 2.0
+@export var group_to_damage: StringName = ""
 
 @onready var collider = $Area3D
 
@@ -35,6 +36,6 @@ func on_enter_area(area_entered) -> void:
 	print("Area entered: ", area_entered)
 
 func on_enter_body(body_entered) -> void:
-	if (body_entered.has_method("on_damage") and body_entered.is_in_group("enemy")):
+	if (body_entered.has_method("on_damage") and body_entered.is_in_group(group_to_damage)):
 		_hit_sound.play()
 		body_entered.on_damage(damage)

@@ -22,18 +22,10 @@ func try_fire() -> void:
 
 func _spawn_projectiles() -> void:
 	var world: Node = get_tree().current_scene
-	var forward_xy: Vector3 = muzzle.global_transform.basis.x # +X is forward in XY
+	var forward_xy: Vector3 = -muzzle.global_transform.basis.z # -Z is forward
 	for i in data.burst_count:
 		var proj := data.projectile_scene.instantiate() as BaseProjectile
 		world.add_child(proj)
-		var dir: Vector3 = _apply_xy_spread(forward_xy, data.spread_deg)
 		proj.speed = data.muzzle_velocity
 		proj.damage = data.damage
-		proj.launch(muzzle.global_transform, dir)
-
-func _apply_xy_spread(dir: Vector3, spread_deg: float) -> Vector3:
-	if spread_deg <= 0.0:
-		return dir.normalized()
-	# Rotate around +Z so spread stays in the XY plane
-	var ang: float = deg_to_rad(randf_range(-spread_deg * 0.5, spread_deg * 0.5))
-	return dir.rotated(Vector3(0, 0, 1), ang).normalized()
+		proj.launch(muzzle.global_transform, forward_xy)
