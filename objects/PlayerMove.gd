@@ -1,19 +1,18 @@
 extends Node
-class_name AIMove
+class_name PlayerMove
 
 @export var move_name : String
 @export var animation : String
 
 var player : CharacterBody3D
-var character : CharacterBody3D
 var animator : AnimationPlayer
 var spawn_point : Vector3
-var resources : EnemyResources
+var resources : PlayerResources
 
 var enter_state_time : float
 
 func check_transition(delta) -> Array:
-	return [true, "FAILING ON PURPOSE, you need to implement transition logic for " + move_name]
+	return [true, "implement transition logic for " + move_name]
 
 
 func update(delta):

@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://cbil5ndxx8jop"]
+[gd_scene load_steps=10 format=3 uid="uid://cbil5ndxx8jop"]
 
 [ext_resource type="Script" uid="uid://8ymff8mt5h64" path="res://objects/player.gd" id="1_gndvh"]
 [ext_resource type="PackedScene" uid="uid://crudnplev28np" path="res://objects/heli-attack/weapons/Pistol.tscn" id="2_6vqvp"]
 [ext_resource type="AudioStream" uid="uid://gs13hpg6x7c0" path="res://sounds/robot_jump.wav" id="3_f6j3j"]
 [ext_resource type="AudioStream" uid="uid://c52um5ycfub4w" path="res://sounds/robot_land.wav" id="4_seukq"]
+[ext_resource type="Script" uid="uid://c4abx6w2fa6et" path="res://objects/player_resources.gd" id="5_seukq"]
+[ext_resource type="Script" uid="uid://pn62h0s3f0yg" path="res://objects/player_state_machine.gd" id="6_sderm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_u8t0g"]
 radius = 0.33
@@ -44,3 +46,12 @@ volume_db = 1.0
 [node name="LandingSound" type="AudioStreamPlayer3D" parent="SoundFX"]
 stream = ExtResource("4_seukq")
 volume_db = 1.0
+
+[node name="Resources" type="Node" parent="." node_paths=PackedStringArray("state_machine")]
+script = ExtResource("5_seukq")
+state_machine = NodePath("../StateMachine")
+
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("player", "resources")]
+script = ExtResource("6_sderm")
+player = NodePath("..")
+resources = NodePath("../Resources")

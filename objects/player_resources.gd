@@ -1,15 +1,23 @@
 extends Node
-class_name EnemyResources
+class_name PlayerResources
 
 @export var state_machine : Node
-@export var health_bar: TextureProgressBar
+
 @export var max_health : float = 100
 @export var health : float = 100
 
+var jump : float = 100
+var max_jump : float = 100
+
+var special : float = 100
+var max_special : float = 100
+
+signal update_player_health(health: float)
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	health_bar.max_value = max_health
-	health_bar.value = health
+	pass # Replace with function body.
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -18,8 +26,8 @@ func _process(delta: float) -> void:
 func lose_health(amount : float):
 	health -= amount
 	if health < 1:
-		state_machine.switch_to("death")
-	health_bar.value = health
+		Events.player_killed.emit()
+	update_player_health.emit(health)
 
 
 func gain_health(amount : float):
@@ -27,4 +35,4 @@ func gain_health(amount : float):
 		health += amount
 	else:
 		health = max_health
-	health_bar.value = health
+	update_player_health.emit(health)

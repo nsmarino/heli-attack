@@ -3,7 +3,7 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	Events.player_killed.connect(_on_player_killed)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -12,4 +12,8 @@ func _process(delta: float) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	pass
+	
+func _on_player_killed()->void:
+	print("Player killed")
+	get_tree().quit()
 	

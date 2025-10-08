@@ -1,24 +1,24 @@
 extends Node
-@export var character : CharacterBody3D
+@export var player : CharacterBody3D
 #@export var animation_player : AnimationPlayer
-@export var resources : EnemyResources
-@export var default_move: String = "idle"
+@export var resources : PlayerResources
 
 var moves : Dictionary # { String : AIMove }
-var current_move : AIMove
+var current_move : PlayerMove
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	collect_states()
-	print("default move: ", default_move)
-	current_move = moves[default_move]
-	switch_to(default_move)
+	pass
+	#collect_states()
+	#current_move = moves["idle"]
+	#switch_to("idle")
 
 func _physics_process(delta):
-	var verdict = current_move.check_transition(delta)
-	if verdict[0]:
-		switch_to(verdict[1])
-	current_move.update(delta)
+	pass
+	#var verdict = current_move.check_transition(delta)
+	#if verdict[0]:
+		#switch_to(verdict[1])
+	#current_move.update(delta)
 
 func switch_to(next_state_name : String):
 	print(current_move.move_name + " -> " + next_state_name)
@@ -30,10 +30,9 @@ func switch_to(next_state_name : String):
 
 func collect_states():
 	for child in get_children():
-		if child is AIMove:
+		if child is PlayerMove:
 			moves[child.move_name] = child
 			#child.animator = animation_player
-			child.character = character
-			child.player = character.player
-			child.spawn_point = character.spawn_point
+			child.player = player
+			child.spawn_point = player.spawn_point
 			child.resources = resources

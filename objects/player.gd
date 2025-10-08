@@ -19,6 +19,8 @@ var _was_on_floor_last_frame := true
 @onready var _jump_sound: AudioStreamPlayer3D = $SoundFX/JumpSound
 @onready var _landing_sound: AudioStreamPlayer3D = $SoundFX/LandingSound
 
+@onready var Resources = $Resources
+
 # World XY plane at z=0
 const TARGET_PLANE := Plane(Vector3(0, 0, 1), 0.0)
 
@@ -128,3 +130,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 		_equip(_current_index + 1)
 	elif Input.is_action_just_pressed("PreviousWeapon"):
 		_equip(_current_index - 1)
+
+func on_damage(damage: float) -> void:
+	Resources.lose_health(damage)

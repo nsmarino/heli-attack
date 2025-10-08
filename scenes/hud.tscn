@@ -123,7 +123,7 @@ offset_bottom = 88.0
 grow_horizontal = 0
 alignment = 2
 
-[node name="Label" type="Label" parent="ProgressData"]
+[node name="Money" type="Label" parent="ProgressData"]
 layout_mode = 2
 text = "$ 300"
 label_settings = SubResource("LabelSettings_ya4ey")
@@ -131,7 +131,7 @@ label_settings = SubResource("LabelSettings_ya4ey")
 [node name="EnemyProgress" type="HBoxContainer" parent="ProgressData"]
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="ProgressData/EnemyProgress"]
+[node name="EnemyCount" type="Label" parent="ProgressData/EnemyProgress"]
 layout_mode = 2
 text = "3/ 12"
 label_settings = SubResource("LabelSettings_ya4ey")
@@ -150,16 +150,16 @@ grow_horizontal = 0
 grow_vertical = 0
 alignment = 2
 
-[node name="Label" type="Label" parent="WeaponData"]
+[node name="WeaponName" type="Label" parent="WeaponData"]
 layout_mode = 2
 text = "Pistol"
 label_settings = SubResource("LabelSettings_ya4ey")
 
-[node name="EnemyProgress" type="HBoxContainer" parent="WeaponData"]
+[node name="WeaponAmmo" type="HBoxContainer" parent="WeaponData"]
 layout_mode = 2
 alignment = 2
 
-[node name="Label2" type="Label" parent="WeaponData/EnemyProgress"]
+[node name="WeaponAmmoCount" type="Label" parent="WeaponData/WeaponAmmo"]
 layout_mode = 2
 text = "24x"
 label_settings = SubResource("LabelSettings_ya4ey")
