@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://crudnplev28np"]
+[gd_scene load_steps=7 format=3 uid="uid://crudnplev28np"]
 
 [ext_resource type="Script" uid="uid://ysk68gnekdpp" path="res://objects/heli-attack/weapons/base/BaseWeapon.gd" id="1_3h6cb"]
 [ext_resource type="Script" uid="uid://dvljj6a8b46ks" path="res://resources/WeaponData.gd" id="2_h7vnp"]
@@ -7,12 +7,18 @@
 [sub_resource type="Resource" id="Resource_w54dr"]
 script = ExtResource("2_h7vnp")
 display_name = &"Pistol"
-fire_rate = 2.0
+fire_rate = 0.5
 projectile_scene = ExtResource("2_w54dr")
 muzzle_velocity = 20.0
 metadata/_custom_type_script = "uid://dvljj6a8b46ks"
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w54dr"]
+albedo_color = Color(0, 0, 0, 1)
+emission_enabled = true
+emission = Color(0.41748115, 0.4981833, 0.3349046, 1)
+
 [sub_resource type="CylinderMesh" id="CylinderMesh_w54dr"]
+material = SubResource("StandardMaterial3D_w54dr")
 top_radius = 0.1
 bottom_radius = 0.08
 height = 1.0

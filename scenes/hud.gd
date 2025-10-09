@@ -25,8 +25,11 @@ func _ready() -> void:
 	specialBar.max_value = Player.Resources.max_special
 	specialBar.value = Player.Resources.special
 
-	
+	Player.update_player_reload.connect(on_update_player_reload)
 	Player.Resources.update_player_health.connect(on_update_player_health)
 
 func on_update_player_health(health) -> void:
 	healthBar.value = health
+
+func on_update_player_reload(value) -> void:
+	reloadBar.value = 100 - (value*100)

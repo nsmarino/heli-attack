@@ -39,3 +39,4 @@ func on_enter_body(body_entered) -> void:
 	if (body_entered.has_method("on_damage") and body_entered.is_in_group(group_to_damage)):
 		_hit_sound.play()
 		body_entered.on_damage(damage)
+		queue_free()

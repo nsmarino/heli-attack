@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ipsqp3uaj0i5"]
+[gd_scene load_steps=17 format=3 uid="uid://ipsqp3uaj0i5"]
 
 [ext_resource type="Script" uid="uid://dc8bxg5qiystw" path="res://scenes/hud.gd" id="1_3swnk"]
 [ext_resource type="Texture2D" uid="uid://c7hodtymkcx6u" path="res://sprites/ui/HealthUnder.png" id="3_uxdf7"]
@@ -11,9 +11,17 @@
 [ext_resource type="Texture2D" uid="uid://djtg7deg3vrni" path="res://sprites/ui/Special.png" id="10_y2nlu"]
 [ext_resource type="Texture2D" uid="uid://wlclhkdngayj" path="res://sprites/ui/SpecialLabel.png" id="11_kp442"]
 [ext_resource type="Texture2D" uid="uid://c7uuw3nlqr3to" path="res://sprites/ui/TimeWarp.png" id="12_gltyx"]
+[ext_resource type="Texture2D" uid="uid://blcoudeydci21" path="res://sprites/ui/ReloadNewUnder.png" id="13_eld54"]
 [ext_resource type="FontFile" uid="uid://cjecoe1uicp8e" path="res://fonts/IBMPlexMono-Regular.woff2" id="13_mgfyp"]
-[ext_resource type="Texture2D" uid="uid://b78kqcl7nafxv" path="res://sprites/ui/ReloadUnder.png" id="14_ptr5m"]
-[ext_resource type="Texture2D" uid="uid://3gxr2jt54utg" path="res://sprites/ui/ReloadProgress.png" id="15_of3ib"]
+[ext_resource type="Texture2D" uid="uid://c7lqueupasoel" path="res://sprites/ui/Reload.png" id="14_3swnk"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_eld54"]
+font = ExtResource("13_mgfyp")
+font_size = 32
+font_color = Color(0.37070763, 0.87691313, 3.85046e-07, 1)
+outline_size = 2
+outline_color = Color(0.66304636, 0.9401068, 0, 1)
+shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ya4ey"]
 font = ExtResource("13_mgfyp")
@@ -126,7 +134,7 @@ alignment = 2
 [node name="Money" type="Label" parent="ProgressData"]
 layout_mode = 2
 text = "$ 300"
-label_settings = SubResource("LabelSettings_ya4ey")
+label_settings = SubResource("LabelSettings_eld54")
 
 [node name="EnemyProgress" type="HBoxContainer" parent="ProgressData"]
 layout_mode = 2
@@ -142,9 +150,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -275.0
+offset_left = -209.0
 offset_top = -138.0
-offset_right = -160.0
+offset_right = -94.0
 offset_bottom = -50.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -170,13 +178,12 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -151.0
-offset_top = -151.0
-offset_right = -10.0
-offset_bottom = -10.0
+offset_left = -75.0
+offset_top = -338.0
+offset_right = 66.0
+offset_bottom = -29.0
 grow_horizontal = 0
 grow_vertical = 0
-value = 72.0
 fill_mode = 3
-texture_under = ExtResource("14_ptr5m")
-texture_progress = ExtResource("15_of3ib")
+texture_under = ExtResource("13_eld54")
+texture_progress = ExtResource("14_3swnk")

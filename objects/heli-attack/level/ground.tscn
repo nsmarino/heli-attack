@@ -1,9 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://dsin5ghpmprho"]
+[gd_scene load_steps=3 format=3 uid="uid://dsin5ghpmprho"]
 
 [ext_resource type="PackedScene" uid="uid://bw2c7nqk7uolc" path="res://models/level/Heli-Level.blend" id="1_ggksq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ggksq"]
+size = Vector3(2.8266602, 20.79367, 4.249756)
 
 [node name="Ground" type="Node3D" groups=["level"]]
 
 [node name="Heli-Level" parent="." instance=ExtResource("1_ggksq")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.02795, -2.9934464, 0.5872803)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("BoxShape3D_ggksq")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.97205, -4.340358, 0.5872803)
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_ggksq")
 
 [editable path="Heli-Level"]

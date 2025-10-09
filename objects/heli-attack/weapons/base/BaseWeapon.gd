@@ -5,20 +5,22 @@ class_name BaseWeapon
 @export var data: WeaponData
 @onready var muzzle: Node3D = $"Muzzle"  # must exist in the weapon scene
 
-var _cooldown: float = 0.0
+@onready var cooldown_timer: Timer = Timer.new()
 
-func _physics_process(delta: float) -> void:
-	if _cooldown > 0.0:
-		_cooldown -= delta
+func _ready() -> void:
+	cooldown_timer.name = "CooldownTimer"
+	cooldown_timer.one_shot = true
+	add_child(cooldown_timer)
+	cooldown_timer.start()
 
 func can_fire() -> bool:
-	return _cooldown <= 0.0 and data != null and data.projectile_scene != null
+	return cooldown_timer.is_stopped() and data != null and data.projectile_scene != null
 
 func try_fire() -> void:
 	if not can_fire():
 		return
-	_cooldown = 1.0 / max(0.001, data.fire_rate)
 	_spawn_projectiles()
+	cooldown_timer.start(data.fire_rate)
 
 func _spawn_projectiles() -> void:
 	var world: Node = get_tree().current_scene

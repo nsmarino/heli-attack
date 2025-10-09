@@ -4,11 +4,7 @@ var _autofire_enabled: bool = true
 var _autofire_timer: float = 0.0
 var _autofire_interval: float = 0.1  # time between autofire shots
 
-func _ready() -> void:
-	pass
-
 func _physics_process(delta: float) -> void:
-	super._physics_process(delta)
 	
 	if _autofire_enabled:
 		_autofire_timer -= delta

@@ -39,6 +39,8 @@ var _weapons: Array[BaseWeapon] = []
 var _current_weapon: BaseWeapon
 var _current_index: int = 0
 
+signal update_player_reload(value)
+
 func _ready() -> void:
 	_instance_weapons()
 	_equip(0)
@@ -98,6 +100,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _process(delta: float) -> void:
+	
+	update_player_reload.emit(_current_weapon.cooldown_timer.time_left)
+	
 	if (Input.is_action_pressed("Shoot") and _current_weapon != null):
 		_current_weapon.try_fire()
 

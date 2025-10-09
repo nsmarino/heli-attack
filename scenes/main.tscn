@@ -1,32 +1,39 @@
 [gd_scene load_steps=8 format=3 uid="uid://dm0ymt1k01748"]
 
 [ext_resource type="Script" uid="uid://b1esvavhc0ixb" path="res://scenes/main.gd" id="1_0xm2m"]
-[ext_resource type="Environment" uid="uid://ddo455a1peyhr" path="res://scenes/main-environment.tres" id="2_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://c4nr4wyx8w452" path="res://objects/heli-attack/level/CameraRig.tscn" id="3_85g3d"]
 [ext_resource type="PackedScene" uid="uid://cbil5ndxx8jop" path="res://objects/Player.tscn" id="3_tefeu"]
 [ext_resource type="PackedScene" uid="uid://ipsqp3uaj0i5" path="res://scenes/hud.tscn" id="5_tipki"]
 [ext_resource type="PackedScene" uid="uid://dsin5ghpmprho" path="res://objects/heli-attack/level/ground.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://xlty00h35sj3" path="res://objects/heli-attack/enemies/helicopters/HeliEnemy.tscn" id="8_tipki"]
 
+[sub_resource type="Environment" id="Environment_tefeu"]
+fog_enabled = true
+fog_mode = 1
+fog_light_color = Color(0.18075639, 0.24931374, 0.12995231, 1)
+fog_density = 1.0
+fog_depth_begin = 100.0
+fog_depth_end = 350.0
+volumetric_fog_density = 0.01
+volumetric_fog_albedo = Color(0.67377937, 0.8217335, 0.6829421, 1)
+volumetric_fog_length = 44.0
+volumetric_fog_detail_spread = 6.0
+adjustment_enabled = true
+adjustment_contrast = 1.15
+adjustment_saturation = 0.85
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_0xm2m")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = ExtResource("2_tbgi4")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.19452564, 0.6620477, -0.72377676, 0.00783547, 0.7367996, 0.6760659, 0.98086625, -0.1371833, 0.13813898, 0, 4, 4)
-light_color = Color(0.991568, 0.89646447, 0.8868053, 1)
-shadow_enabled = true
 
 [node name="CameraRig" parent="." node_paths=PackedStringArray("target") instance=ExtResource("3_85g3d")]
 target = NodePath("../Player")
 
 [node name="Camera3D" parent="CameraRig" index="0"]
-transform = Transform3D(1, 0, 0, 0, 0.9986295, -0.05233596, 0, 0.05233596, 0.9986295, 0, 1, 35)
-fov = 20.0
+transform = Transform3D(1, 0, 0, 0, 0.9986295, -0.05233596, 0, 0.05233596, 0.9986295, 0, -5, 150)
+fov = 5.0
 
 [node name="Player" parent="." instance=ExtResource("3_tefeu")]
+controller_rotation_speed = 4.0
 
 [node name="HUD" parent="." node_paths=PackedStringArray("Player") instance=ExtResource("5_tipki")]
 Player = NodePath("../Player")
@@ -43,5 +50,46 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.065345764, 0, 0)
 [node name="HeliEnemy" parent="Enemies" node_paths=PackedStringArray("player") instance=ExtResource("8_tipki")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10.519609, 6.9110737, 0)
 player = NodePath("../../Player")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 3, 7, 17)
+light_energy = 20.0
+spot_range = 20.0
+spot_angle = 15.0
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="."]
+transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 11, 6, 17)
+light_energy = 20.0
+spot_range = 20.0
+spot_angle = 15.0
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="."]
+transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 3, 11.470512, 1)
+light_energy = 20.0
+spot_range = 20.0
+spot_attenuation = 1.43
+spot_angle = 38.14
+
+[node name="SpotLight3D6" type="SpotLight3D" parent="."]
+transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 11, 13, 1)
+light_energy = 20.0
+spot_range = 20.0
+spot_attenuation = 1.43
+spot_angle = 38.14
+
+[node name="SpotLight3D3" type="SpotLight3D" parent="."]
+transform = Transform3D(0.9659259, 2.8296391e-08, 0.25881907, -0.07819452, 0.95326984, 0.2918258, -0.24672441, -0.3021203, 0.92078793, 16.145573, 3.2973042, 15.539906)
+light_energy = 20.0
+spot_range = 20.0
+spot_angle = 15.0
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="."]
+transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 27, 5, 17)
+light_energy = 20.0
+spot_range = 20.0
+spot_angle = 15.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_tefeu")
 
 [editable path="CameraRig"]

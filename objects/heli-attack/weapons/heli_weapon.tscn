@@ -8,7 +8,7 @@
 [sub_resource type="Resource" id="Resource_uff66"]
 script = ExtResource("4_50enw")
 display_name = &"HeliGun"
-fire_rate = 0.5
+fire_rate = 2.0
 projectile_scene = ExtResource("3_8es46")
 muzzle_velocity = 10.0
 metadata/_custom_type_script = "uid://dvljj6a8b46ks"
