@@ -9,16 +9,16 @@ size = Vector3(2.8266602, 20.79367, 4.249756)
 
 [node name="Heli-Level" parent="." instance=ExtResource("1_ggksq")]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="."]
+[node name="LeftBounds" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.02795, -2.9934464, 0.5872803)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LeftBounds"]
 shape = SubResource("BoxShape3D_ggksq")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+[node name="RightBounds" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.97205, -4.340358, 0.5872803)
 
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="StaticBody3D2"]
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="RightBounds"]
 shape = SubResource("BoxShape3D_ggksq")
 
 [editable path="Heli-Level"]

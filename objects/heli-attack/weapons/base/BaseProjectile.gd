@@ -40,3 +40,6 @@ func on_enter_body(body_entered) -> void:
 		_hit_sound.play()
 		body_entered.on_damage(damage)
 		queue_free()
+	else:
+		print("body entered", body_entered)
+		queue_free()

@@ -82,8 +82,8 @@ func _physics_process(delta: float) -> void:
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir := Input.get_vector("MoveLeft", "MoveRight", "MoveUp", "MoveDown")
-	var direction := (transform.basis * Vector3(input_dir.x, 0, 0)).normalized()
+	var input_dir := Input.get_axis("MoveLeft", "MoveRight")
+	var direction := (transform.basis * Vector3(input_dir, 0, 0)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
@@ -101,7 +101,11 @@ func _physics_process(delta: float) -> void:
 
 func _process(delta: float) -> void:
 	
-	update_player_reload.emit(_current_weapon.cooldown_timer.time_left)
+	# Calculate reload percentage (0 = just fired, 100 = ready to fire)
+	var reload_percentage = 0.0
+	if _current_weapon and _current_weapon.cooldown_timer.wait_time > 0:
+		reload_percentage = ((1.0 - (_current_weapon.cooldown_timer.time_left / _current_weapon.cooldown_timer.wait_time)) * 100.0)
+	update_player_reload.emit(reload_percentage)
 	
 	if (Input.is_action_pressed("Shoot") and _current_weapon != null):
 		_current_weapon.try_fire()

@@ -32,4 +32,4 @@ func on_update_player_health(health) -> void:
 	healthBar.value = health
 
 func on_update_player_reload(value) -> void:
-	reloadBar.value = 100 - (value*100)
+	reloadBar.value = value

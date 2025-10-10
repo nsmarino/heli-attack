@@ -184,6 +184,7 @@ offset_right = 66.0
 offset_bottom = -29.0
 grow_horizontal = 0
 grow_vertical = 0
+value = 60.0
 fill_mode = 3
 texture_under = ExtResource("13_eld54")
 texture_progress = ExtResource("14_3swnk")
