@@ -18,7 +18,6 @@ var _dir: Vector3 = Vector3(1, 0, 0)
 func _ready() -> void:
 	# Simple TTL; swap for a Timer node if you prefer
 	get_tree().create_timer(life_time).timeout.connect(queue_free)
-	collider.connect("area_entered", on_enter_area)
 	collider.connect("body_entered", on_enter_body)
 
 func _physics_process(delta: float) -> void:
@@ -32,14 +31,10 @@ func launch(from: Transform3D, initial_dir: Vector3) -> void:
 func travel(delta: float) -> void:
 	global_position += _dir * speed * delta
 	
-func on_enter_area(area_entered) -> void:
-	print("Area entered: ", area_entered)
-
 func on_enter_body(body_entered) -> void:
 	if (body_entered.has_method("on_damage") and body_entered.is_in_group(group_to_damage)):
 		_hit_sound.play()
 		body_entered.on_damage(damage)
 		queue_free()
 	else:
-		print("body entered", body_entered)
 		queue_free()

@@ -138,10 +138,11 @@ label_settings = SubResource("LabelSettings_eld54")
 
 [node name="EnemyProgress" type="HBoxContainer" parent="ProgressData"]
 layout_mode = 2
+alignment = 2
 
 [node name="EnemyCount" type="Label" parent="ProgressData/EnemyProgress"]
 layout_mode = 2
-text = "3/ 12"
+text = "0"
 label_settings = SubResource("LabelSettings_ya4ey")
 
 [node name="WeaponData" type="VBoxContainer" parent="."]

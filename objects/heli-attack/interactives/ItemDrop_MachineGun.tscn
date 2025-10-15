@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://cnlp3yqud0sup"]
+
+[ext_resource type="PackedScene" uid="uid://ixewxg0qj7p2" path="res://objects/heli-attack/interactives/ItemDrop.tscn" id="1_t62l2"]
+[ext_resource type="PackedScene" uid="uid://dbjgtkf534tlo" path="res://objects/heli-attack/weapons/MachineGun.tscn" id="2_ambxs"]
+
+[node name="ItemDrop" instance=ExtResource("1_t62l2")]
+weapon_scene = ExtResource("2_ambxs")

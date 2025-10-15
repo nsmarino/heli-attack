@@ -142,3 +142,10 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 func on_damage(damage: float) -> void:
 	Resources.lose_health(damage)
+
+func pickup_weapon(packed_scene: PackedScene) -> void:
+	var w := packed_scene.instantiate() as BaseWeapon
+	WeaponSocket.add_child(w)
+	w.visible = false
+	_weapons.append(w)
+	_equip(_weapons.size()-1)

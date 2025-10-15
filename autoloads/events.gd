@@ -6,7 +6,7 @@ enum Phase {
 	END,
 }
 
-signal helicopter_destroyed
+signal helicopter_destroyed(loc: Vector3)
 signal player_killed
 
 signal phase_changed(phase: Phase)

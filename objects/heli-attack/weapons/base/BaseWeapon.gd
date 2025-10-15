@@ -6,6 +6,10 @@ class_name BaseWeapon
 @onready var muzzle: Node3D = $"Muzzle"  # must exist in the weapon scene
 
 @onready var cooldown_timer: Timer = Timer.new()
+@onready var ammo_count : int = data.ammo_count
+
+signal fire_weapon(ammo_remaining: int)
+signal discard
 
 func _ready() -> void:
 	cooldown_timer.name = "CooldownTimer"
@@ -19,8 +23,18 @@ func can_fire() -> bool:
 func try_fire() -> void:
 	if not can_fire():
 		return
-	_spawn_projectiles()
-	cooldown_timer.start(data.fire_rate)
+	
+	if ammo_count > 0:
+		ammo_count - 1
+		_spawn_projectiles()
+		cooldown_timer.start(data.fire_rate)
+		fire_weapon.emit(ammo_count)
+	elif ammo_count == -1:
+		# infinite ammo
+		_spawn_projectiles()
+		cooldown_timer.start(data.fire_rate)
+	else:
+		discard_weapon()
 
 func _spawn_projectiles() -> void:
 	var world: Node = get_tree().current_scene
@@ -31,3 +45,7 @@ func _spawn_projectiles() -> void:
 		proj.speed = data.muzzle_velocity
 		proj.damage = data.damage
 		proj.launch(muzzle.global_transform, forward_xy)
+
+func discard_weapon() -> void:
+	print("Discard")
+	discard.emit()

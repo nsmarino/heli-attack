@@ -97,9 +97,7 @@ func _physics_process(delta: float) -> void:
 			rotation.y = yaw
 			# rotation.y = lerp_angle(rotation.y, yaw, 0.15)
 
-func on_damage(damage: float) -> void:
-	print("receive damage ", damage)
-	
+func on_damage(damage: float) -> void:	
 	# Subtract damage from health
 	health -= damage
 	
@@ -108,6 +106,5 @@ func on_damage(damage: float) -> void:
 	
 	# Check if health is at or below zero
 	if health <= 0.0:
-		print("Helicopter destroyed!")
 		# Queue the helicopter for deletion
 		queue_free()
