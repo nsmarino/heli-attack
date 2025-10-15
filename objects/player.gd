@@ -40,6 +40,8 @@ var _current_weapon: BaseWeapon
 var _current_index: int = 0
 
 signal update_player_reload(value)
+signal update_equipped_weapon(display_name, ammo_count)
+signal update_ammo(count)
 
 func _ready() -> void:
 	_instance_weapons()
@@ -51,6 +53,7 @@ func _instance_weapons() -> void:
 		var w := s.instantiate() as BaseWeapon
 		WeaponSocket.add_child(w)
 		w.visible = false
+		w.character = self
 		_weapons.append(w)
 
 func _equip(index: int) -> void:
@@ -61,6 +64,8 @@ func _equip(index: int) -> void:
 	for i in _weapons.size():
 		_weapons[i].visible = (i == _current_index)
 	_current_weapon = _weapons[_current_index]
+	print("equipping ", _current_weapon.data.display_name)
+	update_equipped_weapon.emit(_current_weapon.data.display_name, _current_weapon.ammo_count)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -148,4 +153,41 @@ func pickup_weapon(packed_scene: PackedScene) -> void:
 	WeaponSocket.add_child(w)
 	w.visible = false
 	_weapons.append(w)
+	w.character = self
+	
 	_equip(_weapons.size()-1)
+
+func discard() -> void:
+	# Can't discard if no weapons exist or no current weapon
+	if _weapons.is_empty() or _current_weapon == null:
+		return
+	
+	# Store the weapon to remove and its index
+	var weapon_to_remove = _current_weapon
+	var old_index = _current_index
+	
+	# Calculate the new index (previous weapon with wrap-around)
+	# If we're at index 0, wrap to the end of the array (after removal)
+	# Otherwise, go to the previous weapon
+	var new_index = old_index - 1 if old_index > 0 else _weapons.size() - 2
+	
+	# If this is the last weapon, clear everything
+	if _weapons.size() == 1:
+		_current_weapon = null
+		_current_index = 0
+		weapon_to_remove.queue_free()
+		_weapons.clear()
+		return
+	
+	# Remove the weapon from the array
+	_weapons.remove_at(old_index)
+	
+	# Free the weapon from the scene tree
+	weapon_to_remove.queue_free()
+	
+	# Adjust new_index if it's out of bounds after removal
+	if new_index >= _weapons.size():
+		new_index = _weapons.size() - 1
+	
+	# Equip the weapon at the new index
+	_equip(new_index)

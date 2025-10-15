@@ -6,6 +6,7 @@ extends AIMove
 
 func on_enter():
 	Events.helicopter_destroyed.emit(character.global_position)
+	character.player.Resources.gain_money(200)
 	character.Sprite.visible = false
 	character.HUD.visible = false
 	character.ParticlesDeath.emitting = true	

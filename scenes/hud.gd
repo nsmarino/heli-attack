@@ -10,6 +10,9 @@ extends CanvasLayer
 
 # Weapon
 @onready var reloadBar: TextureProgressBar = $Reload
+@onready var weaponLabel: Label = $WeaponData/WeaponName
+@onready var weaponAmmoCount: Label = $WeaponData/WeaponAmmo/WeaponAmmoCount
+
 
 # Game progress
 @onready var moneyLabel: Label = $ProgressData/Money
@@ -29,6 +32,8 @@ func _ready() -> void:
 	specialBar.value = Player.Resources.special
 
 	Player.update_player_reload.connect(on_update_player_reload)
+	Player.update_equipped_weapon.connect(on_update_equipped_weapon)
+	Player.update_ammo.connect(on_update_ammo)
 	Player.Resources.update_player_health.connect(on_update_player_health)
 	Player.Resources.update_player_money.connect(on_update_player_money)
 	
@@ -39,6 +44,14 @@ func on_update_player_health(health) -> void:
 
 func on_update_player_reload(value) -> void:
 	reloadBar.value = value
+	
+func on_update_equipped_weapon(name, count) -> void:
+	weaponLabel.text = name
+	weaponAmmoCount.text = "∞" if count == -1 else (str(count) + "x")
+
+func on_update_ammo(count) -> void:
+	print("On update ammo")
+	weaponAmmoCount.text = str(count) + "x"
 	
 func on_update_player_money(value) -> void:
 	moneyLabel.text = "$ " + str(value)

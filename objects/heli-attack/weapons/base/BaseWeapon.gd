@@ -8,6 +8,8 @@ class_name BaseWeapon
 @onready var cooldown_timer: Timer = Timer.new()
 @onready var ammo_count : int = data.ammo_count
 
+var character: CharacterBody3D
+
 signal fire_weapon(ammo_remaining: int)
 signal discard
 
@@ -25,10 +27,10 @@ func try_fire() -> void:
 		return
 	
 	if ammo_count > 0:
-		ammo_count - 1
+		ammo_count -= 1
 		_spawn_projectiles()
 		cooldown_timer.start(data.fire_rate)
-		fire_weapon.emit(ammo_count)
+		character.update_ammo.emit(ammo_count)
 	elif ammo_count == -1:
 		# infinite ammo
 		_spawn_projectiles()
@@ -47,5 +49,4 @@ func _spawn_projectiles() -> void:
 		proj.launch(muzzle.global_transform, forward_xy)
 
 func discard_weapon() -> void:
-	print("Discard")
-	discard.emit()
+	character.discard()

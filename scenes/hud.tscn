@@ -170,7 +170,7 @@ alignment = 2
 
 [node name="WeaponAmmoCount" type="Label" parent="WeaponData/WeaponAmmo"]
 layout_mode = 2
-text = "24x"
+text = "∞"
 label_settings = SubResource("LabelSettings_ya4ey")
 
 [node name="Reload" type="TextureProgressBar" parent="."]

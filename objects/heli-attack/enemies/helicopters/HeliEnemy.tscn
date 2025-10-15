@@ -10,8 +10,7 @@
 [ext_resource type="Script" uid="uid://boon727htg0x4" path="res://objects/heli-attack/enemies/base/AIMove.gd" id="7_8bbjs"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8bbjs"]
-radius = 1.0
-height = 4.0
+height = 3.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_d7lu2"]
 viewport_path = NodePath("Visuals/SubViewport")
