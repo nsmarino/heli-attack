@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b1esvavhc0ixb" path="res://scenes/main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c4nr4wyx8w452" path="res://objects/heli-attack/level/CameraRig.tscn" id="3_85g3d"]
-[ext_resource type="PackedScene" uid="uid://cbil5ndxx8jop" path="res://objects/Player.tscn" id="3_tefeu"]
+[ext_resource type="PackedScene" uid="uid://cbil5ndxx8jop" path="res://objects/player/Player.tscn" id="3_tefeu"]
 [ext_resource type="PackedScene" uid="uid://ipsqp3uaj0i5" path="res://scenes/hud.tscn" id="5_tipki"]
 [ext_resource type="PackedScene" uid="uid://dsin5ghpmprho" path="res://objects/heli-attack/level/ground.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://bh16k1l8ark01" path="res://objects/heli-attack/enemies/HeliSpawner.tscn" id="7_o6xl0"]
@@ -66,46 +66,32 @@ itemDrop_scenes = Array[PackedScene]([ExtResource("7_tipki")])
 [node name="Lighting" type="Node" parent="."]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Lighting"]
-transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 3, 7, 17)
+transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 3, 5.1641693, 12.243975)
 light_energy = 20.0
 spot_range = 20.0
 spot_angle = 15.0
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="Lighting"]
-transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 11, 6, 17)
+transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 8.975058, 4.5816298, 13.943871)
 light_energy = 20.0
 spot_range = 20.0
 spot_angle = 15.0
 
 [node name="SpotLight3D5" type="SpotLight3D" parent="Lighting"]
-transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 3, 11.470512, 1)
-light_energy = 20.0
-spot_range = 20.0
-spot_attenuation = 1.43
-spot_angle = 38.14
-
-[node name="SpotLight3D7" type="SpotLight3D" parent="Lighting"]
-transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 4.966, 9.781, -5.484)
-light_energy = 20.0
-spot_range = 20.0
-spot_attenuation = 1.43
-spot_angle = 38.14
-
-[node name="SpotLight3D6" type="SpotLight3D" parent="Lighting"]
-transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 11, 13, 1)
+transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, -3.1208186, 3.3368187, 7.5246406)
 light_energy = 20.0
 spot_range = 20.0
 spot_attenuation = 1.43
 spot_angle = 38.14
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="Lighting"]
-transform = Transform3D(0.9659259, 2.8296391e-08, 0.25881907, -0.07819452, 0.95326984, 0.2918258, -0.24672441, -0.3021203, 0.92078793, 16.145573, 3.2973042, 15.539906)
+transform = Transform3D(0.9659259, 2.8296391e-08, 0.25881907, -0.07819452, 0.95326984, 0.2918258, -0.24672441, -0.3021203, 0.92078793, 14.145573, 1.2973042, 13.539906)
 light_energy = 20.0
 spot_range = 20.0
 spot_angle = 15.0
 
 [node name="SpotLight3D4" type="SpotLight3D" parent="Lighting"]
-transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 27, 5, 17)
+transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 25, 3, 12)
 light_energy = 20.0
 spot_range = 20.0
 spot_angle = 15.0

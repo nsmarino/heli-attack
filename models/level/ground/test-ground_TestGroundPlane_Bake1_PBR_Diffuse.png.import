@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1nanutdg6udj"
-path.s3tc="res://.godot/imported/Heli-Level_Grass_16-128x128.png-a4feadadccba66dc954399ba0b41ef76.s3tc.ctex"
+uid="uid://ckgw55c8nlcya"
+path.s3tc="res://.godot/imported/test-ground_TestGroundPlane_Bake1_PBR_Diffuse.png-242cc69c2308666a1a97af744522a3b5.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "eb02ccfd9766495b0230e8665714ef5a"
+"md5": "1e1a1bf3419ed6e9db8bb96c4715d177"
 }
 
 [deps]
 
-source_file="res://models/level/Heli-Level_Grass_16-128x128.png"
-dest_files=["res://.godot/imported/Heli-Level_Grass_16-128x128.png-a4feadadccba66dc954399ba0b41ef76.s3tc.ctex"]
+source_file="res://models/level/ground/test-ground_TestGroundPlane_Bake1_PBR_Diffuse.png"
+dest_files=["res://.godot/imported/test-ground_TestGroundPlane_Bake1_PBR_Diffuse.png-242cc69c2308666a1a97af744522a3b5.s3tc.ctex"]
 
 [params]
 
