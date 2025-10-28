@@ -15,6 +15,12 @@ extends CharacterBody3D
 @onready var WeaponPivot: Node3D = $WeaponPivot
 @onready var WeaponSocket: Node3D = $WeaponPivot/WeaponSocket
 
+# Sprite layers
+@onready var SpriteWeapon: Sprite3D = $"WeaponPivot/CharSprite-Weapon"
+@onready var SpriteBase: Sprite3D = $"CharSprite-Base"
+@onready var SpriteHead: Sprite3D = $"CharSprite-Head"
+
+
 var _was_on_floor_last_frame := true
 @onready var _jump_sound: AudioStreamPlayer3D = $SoundFX/JumpSound
 @onready var _landing_sound: AudioStreamPlayer3D = $SoundFX/LandingSound
@@ -34,6 +40,9 @@ var ground_height := 0.0
 # Double jump state tracking
 var jumps_remaining: int = 2  # Start with 2 jumps (first jump + double jump)
 var max_jumps: int = 2
+
+# Facing direction tracking
+var facing_right: bool = false  # false = facing left (default), true = facing right
 
 var _weapons: Array[BaseWeapon] = []
 var _current_weapon: BaseWeapon
@@ -64,7 +73,6 @@ func _equip(index: int) -> void:
 	for i in _weapons.size():
 		_weapons[i].visible = (i == _current_index)
 	_current_weapon = _weapons[_current_index]
-	print("equipping ", _current_weapon.data.display_name)
 	update_equipped_weapon.emit(_current_weapon.data.display_name, _current_weapon.ammo_count)
 
 func _physics_process(delta: float) -> void:
@@ -95,6 +103,23 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
+	
+	# Flip sprites based on movement direction
+	# Only update flip when there's actual input to preserve facing when stopped
+	if input_dir > 0:
+		# Moving right - flip sprites
+		facing_right = true
+		SpriteBase.flip_h = true
+		SpriteHead.flip_h = true
+		# Flip WeaponPivot by scaling X to -1
+		WeaponPivot.scale.x = -1.0
+	elif input_dir < 0:
+		# Moving left - use default orientation
+		facing_right = false
+		SpriteBase.flip_h = false
+		SpriteHead.flip_h = false
+		# Reset WeaponPivot scale
+		WeaponPivot.scale.x = 1.0
 
 	if is_on_floor() and not _was_on_floor_last_frame:
 		_landing_sound.play()

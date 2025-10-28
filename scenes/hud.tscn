@@ -18,9 +18,9 @@
 [sub_resource type="LabelSettings" id="LabelSettings_eld54"]
 font = ExtResource("13_mgfyp")
 font_size = 32
-font_color = Color(0.37070763, 0.87691313, 3.85046e-07, 1)
+font_color = Color(0.98896056, 0.7648709, 0.3329911, 1)
 outline_size = 2
-outline_color = Color(0.66304636, 0.9401068, 0, 1)
+outline_color = Color(0.99468905, 0.81346375, 0.5419085, 1)
 shadow_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_ya4ey"]

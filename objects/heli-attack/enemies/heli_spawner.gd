@@ -22,7 +22,6 @@ func _process(delta: float) -> void:
 	pass
 
 func _spawn_heli() -> void:
-	print("spawn heli")
 
 	var heli := heli_scenes[0].instantiate() as HeliEnemy
 	heli.player = PLAYER
@@ -37,7 +36,6 @@ func _spawn_itemDrop(from) -> void:
 
 
 func _on_heli_death(loc) -> void:
-	print("on heli death")
 	
 #	update number of helicopters destroyed
 	heli_count += 1

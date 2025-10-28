@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dm0ymt1k01748"]
+[gd_scene load_steps=12 format=3 uid="uid://dm0ymt1k01748"]
 
 [ext_resource type="Script" uid="uid://b1esvavhc0ixb" path="res://scenes/main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://c4nr4wyx8w452" path="res://objects/heli-attack/level/CameraRig.tscn" id="3_85g3d"]
@@ -7,26 +7,39 @@
 [ext_resource type="PackedScene" uid="uid://dsin5ghpmprho" path="res://objects/heli-attack/level/ground.tscn" id="6_tefeu"]
 [ext_resource type="PackedScene" uid="uid://bh16k1l8ark01" path="res://objects/heli-attack/enemies/HeliSpawner.tscn" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://cnlp3yqud0sup" path="res://objects/heli-attack/interactives/ItemDrop_MachineGun.tscn" id="7_tipki"]
+[ext_resource type="PackedScene" uid="uid://bslwbqiewnkph" path="res://models/level/decoration/mtn-1.glb" id="8_tipki"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_o6xl0"]
+sky_top_color = Color(0.18422994, 0.57105005, 0.34845462, 1)
+sky_horizon_color = Color(0.7437628, 0.75019306, 0.76304793, 1)
+sky_curve = 0.053033058
+ground_bottom_color = Color(0.3627856, 0.19211593, 0.01461086, 1)
+ground_horizon_color = Color(0.6737721, 0.7546739, 0.7322489, 1)
+ground_curve = 0.01071777
+
+[sub_resource type="Sky" id="Sky_tipki"]
+sky_material = SubResource("ProceduralSkyMaterial_o6xl0")
 
 [sub_resource type="Environment" id="Environment_tefeu"]
+background_mode = 2
+sky = SubResource("Sky_tipki")
+sky_custom_fov = 12.0
 ssao_enabled = true
 ssao_radius = 2.0
 ssao_intensity = 16.0
 fog_enabled = true
 fog_mode = 1
-fog_light_color = Color(0.5406624, 0.4291041, 0, 1)
-fog_light_energy = 1.25
-fog_density = 0.6
-fog_depth_begin = 125.0
-fog_depth_end = 350.0
-volumetric_fog_enabled = true
-volumetric_fog_density = 0.005
-volumetric_fog_emission = Color(0.117478736, 0.017446194, 0, 1)
-volumetric_fog_length = 44.0
-volumetric_fog_detail_spread = 6.0
+fog_light_color = Color(0.3098804, 0.5500214, 0.48053193, 1)
+fog_light_energy = 0.95
+fog_density = 0.6253
+fog_sky_affect = 0.413
+fog_depth_begin = 0.0
+fog_depth_end = 800.0
+volumetric_fog_density = 0.001
+volumetric_fog_albedo = Color(0.702536, 0.26669753, 0.09136739, 1)
 adjustment_enabled = true
-adjustment_contrast = 1.15
-adjustment_saturation = 0.85
+adjustment_contrast = 1.13
+adjustment_saturation = 1.38
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_0xm2m")
@@ -66,34 +79,45 @@ itemDrop_scenes = Array[PackedScene]([ExtResource("7_tipki")])
 [node name="Lighting" type="Node" parent="."]
 
 [node name="SpotLight3D" type="SpotLight3D" parent="Lighting"]
-transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 3, 5.1641693, 12.243975)
+transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, -1.1498928, 6.068944, 11.357614)
 light_energy = 20.0
 spot_range = 20.0
 spot_angle = 15.0
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="Lighting"]
-transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 8.975058, 4.5816298, 13.943871)
+transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 3.8799963, 6.068944, 11.357614)
 light_energy = 20.0
 spot_range = 20.0
 spot_angle = 15.0
 
-[node name="SpotLight3D5" type="SpotLight3D" parent="Lighting"]
-transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, -3.1208186, 3.3368187, 7.5246406)
-light_energy = 20.0
-spot_range = 20.0
-spot_attenuation = 1.43
-spot_angle = 38.14
-
 [node name="SpotLight3D3" type="SpotLight3D" parent="Lighting"]
-transform = Transform3D(0.9659259, 2.8296391e-08, 0.25881907, -0.07819452, 0.95326984, 0.2918258, -0.24672441, -0.3021203, 0.92078793, 14.145573, 1.2973042, 13.539906)
+transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 8.468502, 2.8131428, 11.357614)
 light_energy = 20.0
 spot_range = 20.0
 spot_angle = 15.0
 
 [node name="SpotLight3D4" type="SpotLight3D" parent="Lighting"]
-transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 25, 3, 12)
+transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 15.515434, 6.1352997, 11.357614)
 light_energy = 20.0
 spot_range = 20.0
 spot_angle = 15.0
+
+[node name="SpotLight3D5" type="SpotLight3D" parent="Lighting"]
+transform = Transform3D(0.9659259, 7.1967086e-09, 0.25881907, -0.12940954, 0.86602545, 0.4829629, -0.22414389, -0.5, 0.8365163, 21.169252, 6.1352997, 11.357614)
+light_energy = 20.0
+spot_range = 20.0
+spot_angle = 15.0
+
+[node name="mtn-1" parent="." instance=ExtResource("8_tipki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.4256287, 24.391804, -360.99902)
+
+[node name="mtn-2" parent="." instance=ExtResource("8_tipki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.38153, 7.15926, -360.99902)
+
+[node name="mtn-3" parent="." instance=ExtResource("8_tipki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 19.356445, 14.559711, -360.99902)
+
+[node name="mtn-4" parent="." instance=ExtResource("8_tipki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.638733, 23.501728, -360.99902)
 
 [editable path="CameraRig"]

@@ -10,7 +10,6 @@ var current_move : AIMove
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	collect_states()
-	print("default move: ", default_move)
 	current_move = moves[default_move]
 	switch_to(default_move)
 
@@ -21,7 +20,6 @@ func _physics_process(delta):
 	current_move.update(delta)
 
 func switch_to(next_state_name : String):
-	print(current_move.move_name + " -> " + next_state_name)
 	current_move.on_exit()
 	current_move = moves[next_state_name]
 	current_move.mark_enter_state()

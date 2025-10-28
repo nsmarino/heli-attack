@@ -14,6 +14,5 @@ func _unhandled_input(event: InputEvent) -> void:
 	pass
 	
 func _on_player_killed()->void:
-	print("Player killed")
 	get_tree().quit()
 	

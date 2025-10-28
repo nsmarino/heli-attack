@@ -21,7 +21,6 @@ func _physics_process(delta):
 	#current_move.update(delta)
 
 func switch_to(next_state_name : String):
-	print(current_move.move_name + " -> " + next_state_name)
 	current_move.on_exit()
 	current_move = moves[next_state_name]
 	current_move.mark_enter_state()

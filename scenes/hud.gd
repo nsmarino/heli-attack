@@ -50,7 +50,6 @@ func on_update_equipped_weapon(name, count) -> void:
 	weaponAmmoCount.text = "∞" if count == -1 else (str(count) + "x")
 
 func on_update_ammo(count) -> void:
-	print("On update ammo")
 	weaponAmmoCount.text = str(count) + "x"
 	
 func on_update_player_money(value) -> void:
